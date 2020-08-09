@@ -1,5 +1,5 @@
 from .models import Course
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 
 class HomePage(ListView):
@@ -12,3 +12,8 @@ class HomePage(ListView):
         ctx = super(HomePage, self).get_context_data(**kwargs)
         ctx['title'] = 'Главная страница сайта'
         return ctx
+
+
+class CourseDetailPage(DetailView):
+    model = Course
+    template_name = 'courses/course-detail.html'

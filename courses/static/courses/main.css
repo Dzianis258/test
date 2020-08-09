@@ -2,7 +2,7 @@ body {
     background: #fafafa;
 }
 
-.courses {
+.courses, .main-block {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -21,3 +21,10 @@ footer {
     width: 80%;
     margin-left: 10%;
 }
+
+.main-block{
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.one-course {margin-right; margin-right: 100px;}

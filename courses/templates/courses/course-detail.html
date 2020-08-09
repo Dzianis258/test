@@ -1,0 +1,20 @@
+{% extends 'courses/main_layout.html' %}
+
+{% block main_section %}
+<div class="main-block">
+    <div class="one-course">
+        <h4>{{ object.title }}</h4>
+        <p>{{ object.description }}</p>
+
+        {% if object.img %}
+            <img src="{{ course.img.url }}" alt="{{ object.title }}">
+        {% else %}
+            <img src="/pictures/default.phg" alt="{{ object.title }}">
+        {% endif %}
+    </div>
+    <div class="aside-course">
+        <h3>Описание курса</h3>
+        <p>{{ object.description }}</p>
+    </div>
+</div>
+{% endblock %}
