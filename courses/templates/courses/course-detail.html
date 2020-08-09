@@ -4,8 +4,6 @@
 <div class="main-block">
     <div class="one-course">
         <h4>{{ object.title }}</h4>
-        <p>{{ object.description }}</p>
-
         {% if object.img %}
             <img src="{{ course.img.url }}" alt="{{ object.title }}">
         {% else %}
@@ -15,6 +13,11 @@
     <div class="aside-course">
         <h3>Описание курса</h3>
         <p>{{ object.description }}</p>
+        <ul>
+        {% for lesson in lessons %}
+            <li><a href="#"> {{ lesson.title }} </a></li>
+        {% endfor %}
+        </ul>
     </div>
 </div>
 {% endblock %}
