@@ -1,0 +1,21 @@
+{% extends 'courses/main_layout.html' %}
+
+{% block main_section %}
+<div class="main-block">
+    <div class="one-course">
+        <h4>{{ title }}</h4>
+        {% if object.img %}
+            <img src="{{ course.img.url }}" alt="{{ object.title }}">
+        {% else %}
+            <img src="/pictures/default.phg" alt="{{ object.title }}">
+        {% endif %}
+    </div>
+    <div class="aside-course">
+        <h3>Видео урок - {{ title }}</h3>
+        <p>{{ desc }}</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{video}}" frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+    </div>
+</div>
+{% endblock %}

@@ -5,7 +5,7 @@
     <div class="one-course">
         <h4>{{ object.title }}</h4>
         {% if object.img %}
-            <img src="{{ course.img.url }}" alt="{{ object.title }}">
+            <img src="{{ object.img.url }}" alt="{{ object.title }}">
         {% else %}
             <img src="/pictures/default.phg" alt="{{ object.title }}">
         {% endif %}
@@ -15,7 +15,7 @@
         <p>{{ object.description }}</p>
         <ul>
         {% for lesson in lessons %}
-            <li><a href="#"> {{ lesson.title }} </a></li>
+            <li><a href="{{ lesson.get_absolute_url }}"> {{ lesson.title }} </a></li>
         {% endfor %}
         </ul>
     </div>
