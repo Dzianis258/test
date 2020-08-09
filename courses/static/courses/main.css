@@ -1,0 +1,23 @@
+body {
+    background: #fafafa;
+}
+
+.courses {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 80%;
+    margin: 100px 10%;
+}
+
+.courses .course {
+    width: 30%;
+}
+
+.courses .course img {width: 100%}
+
+footer {
+    width: 80%;
+    margin-left: 10%;
+}
