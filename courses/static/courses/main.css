@@ -28,3 +28,19 @@ footer {
     width: 80%;
     margin-left: 10%;
 }
+.form-register {
+  padding: 20px;
+  background: #fafafa;
+  border: 1px solid silver;
+  margin-top: 20px;
+}
+
+.form-register.auth input, .form-register.auth textarea{
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    radius: 5px;
+    border: 1px solid silver;
+}
+
+form ul.errorlist {color: red}

@@ -1,5 +1,5 @@
 from .models import Course, Lesson
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 
 
 class HomePage(ListView):
@@ -37,4 +37,22 @@ class LessonDetailPage(DetailView):
         ctx['title'] = lesson[0]['title']
         ctx['desc'] = lesson[0]['description']
         ctx['video'] = lesson[0]['video_url'].split('=')[1]
+        return ctx
+
+
+class CourseAddPage(CreateView):
+    model = Course
+    template_name = 'courses/add-course.html'
+    fields = ['slug', 'title', 'description', 'img']
+
+    def form_valid(self, form): #встроенная функция, которая срабатывает перед сохранением данных в БД
+        if not Course.objects.filter(slug=form.instance.slug):
+            return super().form_valid(form)
+        else:
+            form.add_error(error="Такое название URL уже есть в базе данных придумайте другое", field='slug')
+            return super().form_invalid(form)
+
+    def get_context_data(self, *, object_list=None, **kwards):
+        ctx = super(CourseAddPage, self).get_context_data(**kwards)
+        ctx['title'] = 'Добавить курс'
         return ctx

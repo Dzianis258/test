@@ -3,10 +3,10 @@ from django.urls import reverse
 
 
 class Course(models.Model):
-    slug = models.SlugField()
-    title = models.CharField(max_length=120)
-    description = models.TextField()
-    img = models.ImageField(default='default.png', upload_to='course_images')
+    slug = models.SlugField(verbose_name='Название URL')
+    title = models.CharField(verbose_name='Название курса', max_length=120)
+    description = models.TextField(verbose_name='Описание курса')
+    img = models.ImageField(verbose_name='Изображение профиля', default='default.png', upload_to='course_images')
 
     def __str__(self):
         return self.title
