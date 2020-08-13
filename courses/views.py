@@ -1,5 +1,23 @@
 from .models import Course, Lesson
 from django.views.generic import ListView, DetailView, CreateView
+from django.shortcuts import render
+from cloudipsp import Api, Checkout
+import time
+
+
+def tarrifsPage(request):
+
+    api = Api(merchant_id=1397120,
+              secret_key='test')
+    checkout = Checkout(api=api)
+    data = {
+        "currency": "RUB",
+        "amount": 150000,
+        # "order_desk": "покука подписки",
+        # "order_id": str(time.time()),
+    }
+    url = checkout.url(data).get('checkout_url')
+    return render(request, 'courses/tarrifs.html', {'title':'Тарифы на сайте', 'url': url})
 
 
 class HomePage(ListView):
@@ -45,7 +63,8 @@ class CourseAddPage(CreateView):
     template_name = 'courses/add-course.html'
     fields = ['slug', 'title', 'description', 'img']
 
-    def form_valid(self, form): #встроенная функция, которая срабатывает перед сохранением данных в БД
+    # встроенная функция, которая срабатывает перед сохранением данных в БД
+    def form_valid(self, form):
         if not Course.objects.filter(slug=form.instance.slug):
             return super().form_valid(form)
         else:

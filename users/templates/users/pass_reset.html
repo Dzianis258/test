@@ -1,0 +1,18 @@
+{% extends 'courses/main_layout.html' %}
+
+{% block title %}
+  Восстановление пароля
+{% endblock %}
+
+{% block main_section %}
+<div class="container">
+  <h1>Восстановление пароля</h1>
+  <form method="post" class="form-register auth">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-outline-danger">Запросить новый пароль</button>
+  </form>
+</div>
+{% endblock %}
+
+

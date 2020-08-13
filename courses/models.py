@@ -7,6 +7,7 @@ class Course(models.Model):
     title = models.CharField(verbose_name='Название курса', max_length=120)
     description = models.TextField(verbose_name='Описание курса')
     img = models.ImageField(verbose_name='Изображение профиля', default='default.png', upload_to='course_images')
+    free = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title

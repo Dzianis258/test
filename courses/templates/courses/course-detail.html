@@ -13,11 +13,27 @@
     <div class="aside-course">
         <h3>Описание курса</h3>
         <p>{{ object.description }}</p>
-        <ul>
-        {% for lesson in lessons %}
-            <li><a href="{{ lesson.get_absolute_url }}"> {{ lesson.title }} </a></li>
-        {% endfor %}
-        </ul>
+        {% if object.free == True %}
+             <ul>
+            {% for lesson in lessons %}
+                <li><a href="{{ lesson.get_absolute_url }}"> {{ lesson.title }} </a></li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            {% if object.free == False and user.is_authenticated == False %}
+                <p><a href="{% url 'reg' %}">Зарегистрируйтель </a>на сайте и купите подписку, чтобы просмотреть эток курс</p>
+            {% else %}
+                {% if user.profile.account_type == 'Полный пакет' %}
+                    <ul>
+                    {% for lesson in lessons %}
+                        <li><a href="{{ lesson.get_absolute_url }}"> {{ lesson.title }} </a></li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Необходимо купить <a href="{% url 'tarrifs' %}">подписку</a> на сайте, чтобы просмотреть эток курс</p>
+                {% endif %}
+            {% endif %}
+        {% endif %}
     </div>
 </div>
 {% endblock %}

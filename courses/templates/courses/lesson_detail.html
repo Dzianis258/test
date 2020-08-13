@@ -13,9 +13,19 @@
     <div class="aside-course">
         <h3>Видео урок - {{ title }}</h3>
         <p>{{ desc }}</p>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{video}}" frameborder="0"
+        {% if object.free == True %}
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{video}}" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            </iframe>
+        {% elif user.is_authenticated == False %}
+            <p><a href="{% url 'reg' %}">Зарегистрируйтель </a>на сайте и купите подписку, чтобы просмотреть эток курс</p>
+        {% elif user.profile.account_type == 'Бесплатный пакет' %}
+            <p>Необходимо купить <a href="{% url 'tarrifs' %}">подписку</a> на сайте, чтобы просмотреть эток курс</p>
+        {% else %}
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{video}}" frameborder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-        </iframe>
+            </iframe>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
